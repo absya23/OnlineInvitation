@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
 const { Header, Content, Footer } = Layout;
 
+const items = [
+	{
+		label: <Link to="/">Trang chủ</Link>,
+		key: "",
+	},
+	{
+		label: <Link to="/templates">Mẫu thiệp</Link>,
+		key: "/templates",
+	},
+	{
+		label: <Link to="/contact">Liên hệ</Link>,
+		key: "/contact",
+	},
+];
+
 const MainLayout = ({ children }) => {
 	const location = useLocation();
-
+	const [current, setCurrent] = useState(location.pathname);
+	const onClick = (e) => {
+		setCurrent(e.key);
+	};
 	return (
 		<Layout style={{ minHeight: "100vh" }}>
 			<Header>
@@ -20,14 +38,13 @@ const MainLayout = ({ children }) => {
 				>
 					Wedding Invitation
 				</div>
-				<Menu theme="dark" mode="horizontal" selectedKeys={[location.pathname]}>
-					<Menu.Item key="/">
-						<Link to="/">Trang chủ</Link>
-					</Menu.Item>
-					<Menu.Item key="/templates">
-						<Link to="/templates">Mẫu thiệp</Link>
-					</Menu.Item>
-				</Menu>
+				<Menu
+					onClick={onClick}
+					theme="dark"
+					mode="horizontal"
+					selectedKeys={[current]}
+					items={items}
+				></Menu>
 			</Header>
 			<Content style={{ padding: "24px 48px" }}>{children}</Content>
 			<Footer style={{ textAlign: "center" }}>

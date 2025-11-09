@@ -5,6 +5,7 @@ import TemplatesPage from "../pages/TemplatesPage";
 import TemplateDetailPage from "../pages/TemplateDetailPage";
 import CheckoutPage from "../pages/CheckoutPage";
 import InvitationViewPage from "../pages/InvitationViewPage";
+import ContactPage from "../pages/ContactPage";
 
 const AppRoutes = () => {
 	return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
 			<Route path="/" element={<HomePage />} />
 			<Route path="/templates" element={<TemplatesPage />} />
 			<Route path="/templates/:slug" element={<TemplateDetailPage />} />
+			<Route path="/contact" element={<ContactPage />} />
 			<Route path="/checkout/:slug" element={<CheckoutPage />} />
 			<Route path="/invite/:slug" element={<InvitationViewPage />} />
 		</Routes>
