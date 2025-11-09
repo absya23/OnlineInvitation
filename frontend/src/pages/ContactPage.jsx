@@ -16,6 +16,9 @@ const ContactPage = () => {
 				Hãy để lại thông tin, chúng tôi sẽ liên hệ với bạn trong thời gian sớm
 				nhất.
 			</p>
+			<p>
+				<p></p>
+			</p>
 			<Form
 				className="m-auto"
 				name="wrap"
