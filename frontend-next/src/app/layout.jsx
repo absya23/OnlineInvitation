@@ -12,6 +12,17 @@ import Image from "next/image";
 
 const { Header, Content, Footer } = Layout;
 
+const MenuItem = [
+	{ key: "/", label: <Link href="/">Trang chủ</Link> },
+	{
+		key: "/templates",
+		label: <Link href="/templates">Mẫu thiệp</Link>,
+	},
+	{
+		key: "/contact",
+		label: <Link href="/contact">Liên hệ</Link>,
+	},
+];
 export default function RootLayout({ children }) {
 	const pathname = usePathname();
 
@@ -42,13 +53,7 @@ export default function RootLayout({ children }) {
 									style={{ flex: 1, backgroundColor: "#fff" }}
 									mode="horizontal"
 									selectedKeys={[pathname]}
-									items={[
-										{ key: "/", label: <Link href="/">Trang chủ</Link> },
-										{
-											key: "/templates",
-											label: <Link href="/templates">Mẫu thiệp</Link>,
-										},
-									]}
+									items={MenuItem}
 								/>
 							</Header>
 
