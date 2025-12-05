@@ -1,7 +1,8 @@
 "use client";
 
-import { Button, Form, Input, Select, Space, Typography } from "antd";
-import React from "react";
+import QuestionAnswer from "@/components/QuestionAnswer";
+import { Button, Col, Form, Input, Radio, Row, Space, Typography } from "antd";
+import React, { Fragment } from "react";
 
 const { Title, Paragraph } = Typography;
 const layout = {
@@ -38,80 +39,99 @@ function ContactPage() {
 		form.setFieldsValue({ note: "Hello world!", gender: "male" });
 	};
 	return (
-		<div>
-			<div
-				className="w-3xl mx-auto my-10 shadow-lg"
-				style={{
-					background: "#fff",
-					minHeight: 280,
-					padding: 24,
-					borderRadius: 20,
-				}}
+		<Fragment>
+			<Row
+				gutter={[
+					{ xs: 16, sm: 24 },
+					{ xs: 16, sm: 24 },
+				]}
 			>
-				<div className="text-center">
-					<Title level="2">Liên hệ với chúng tôi</Title>
-					<Paragraph className="mb-5 text-center italic">
-						Hãy để lại thông tin, chúng tôi sẽ liên hệ với bạn trong thời gian
-						sớm nhất.
-					</Paragraph>
-				</div>
-				<Form
-					{...layout}
-					form={form}
-					name="control-hooks"
-					onFinish={onFinish}
-					style={{ maxWidth: 600 }}
-					wrapperCol={{ flex: 1 }}
-				>
-					<Form.Item name="note" label="Note" rules={[{ required: true }]}>
-						<Input />
-					</Form.Item>
-					<Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
-						<Select
-							allowClear
-							placeholder="Select a option and change input text above"
-							onChange={onGenderChange}
-							options={[
-								{ label: "male", value: "male" },
-								{ label: "female", value: "female" },
-								{ label: "other", value: "other" },
-							]}
-						/>
-					</Form.Item>
-					<Form.Item
-						noStyle
-						shouldUpdate={(prevValues, currentValues) =>
-							prevValues.gender !== currentValues.gender
-						}
+				<Col xs={24} md={12}>
+					<div>
+						<QuestionAnswer />
+					</div>
+				</Col>
+
+				<Col xs={24} md={12}>
+					<div
+						className="shadow-lg"
+						style={{
+							background: "#fff",
+							minHeight: 280,
+							padding: 24,
+							borderRadius: 10,
+						}}
 					>
-						{({ getFieldValue }) =>
-							getFieldValue("gender") === "other" ? (
-								<Form.Item
-									name="customizeGender"
-									label="Customize Gender"
-									rules={[{ required: true }]}
-								>
-									<Input />
-								</Form.Item>
-							) : null
-						}
-					</Form.Item>
-					<Form.Item {...tailLayout}>
-						<Space>
-							<Button type="primary" htmlType="submit">
-								Submit
-							</Button>
-							<Button htmlType="button" onClick={onReset}>
-								Reset
-							</Button>
-							<Button type="link" htmlType="button" onClick={onFill}>
-								Fill form
-							</Button>
-						</Space>
-					</Form.Item>
-				</Form>
-			</div>
-		</div>
+						<div className="text-center">
+							<Title level={2}>Liên hệ với chúng tôi</Title>
+							<Paragraph className="mb-5 text-center italic">
+								Hãy để lại thông tin, chúng tôi sẽ liên hệ với bạn trong thời
+								gian sớm nhất.
+							</Paragraph>
+						</div>
+						<Form
+							{...layout}
+							form={form}
+							name="control-hooks"
+							onFinish={onFinish}
+							style={{ maxWidth: 600 }}
+							wrapperCol={{ flex: 1 }}
+							initialValues={{ gender: "male" }}
+						>
+							<Form.Item name="note" label="Note" rules={[{ required: true }]}>
+								<Input />
+							</Form.Item>
+							<Form.Item
+								name="gender"
+								label="Gender"
+								rules={[{ required: true }]}
+							>
+								<Radio.Group
+									placeholder="Select a option and change input text above"
+									onChange={onGenderChange}
+									options={[
+										{ label: "male", value: "Male" },
+										{ label: "female", value: "Female" },
+										{ label: "other", value: "Other" },
+									]}
+								/>
+							</Form.Item>
+							<Form.Item
+								noStyle
+								shouldUpdate={(prevValues, currentValues) =>
+									prevValues.gender !== currentValues.gender
+								}
+							>
+								{({ getFieldValue }) =>
+									getFieldValue("gender") === "other" ? (
+										<Form.Item
+											name="customizeGender"
+											label="Customize Gender"
+											rules={[{ required: true }]}
+										>
+											<Input />
+										</Form.Item>
+									) : null
+								}
+							</Form.Item>
+							<Form.Item {...tailLayout}>
+								<Space>
+									<Button type="primary" htmlType="submit">
+										Submit
+									</Button>
+									<Button htmlType="button" onClick={onReset}>
+										Reset
+									</Button>
+									<Button type="link" htmlType="button" onClick={onFill}>
+										Fill form
+									</Button>
+								</Space>
+							</Form.Item>
+						</Form>
+					</div>
+				</Col>
+			</Row>
+		</Fragment>
 	);
 }
 

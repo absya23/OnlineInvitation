@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
 								/>
 							</Header>
 
-							<Content style={{ padding: "24px 48px" }}>{children}</Content>
+							<Content className="wrapper-container">{children}</Content>
 
 							<Footer style={{ textAlign: "center" }}>
 								© {new Date().getFullYear()} Online Wedding Invitation

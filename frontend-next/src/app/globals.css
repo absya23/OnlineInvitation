@@ -24,3 +24,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.wrapper-container {
+  padding: 24px 48px;
+}
+
+@media(max-width: 768px) {
+  .wrapper-container {
+    padding: 20px 10px;
+  }
+}

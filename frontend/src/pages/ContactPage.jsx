@@ -29,11 +29,7 @@ const ContactPage = () => {
 				colon={false}
 				style={{ maxWidth: 600 }}
 			>
-				<Form.Item
-					label="Normal label"
-					name="username"
-					rules={[{ required: true }]}
-				>
+				<Form.Item label="Normal label" name="zz" rules={[{ required: true }]}>
 					<Input />
 				</Form.Item>
 
