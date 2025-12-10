@@ -1,70 +1,23 @@
-"use client";
 import React from "react";
 import "./globals.css";
 import "antd/dist/reset.css";
-import { Provider } from "react-redux";
-import { ConfigProvider, Layout, Menu } from "antd";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import store from "@/store";
-import { themeConfig } from "@/theme/config";
-import Image from "next/image";
+import { Layout } from "antd";
+import Providers from "@/components/theme/Provider";
+import AppHeader from "@/components/layout/AppHeader";
+import AppContent from "@/components/layout/AppContent";
+import AppFooter from "@/components/layout/AppFooter";
 
-const { Header, Content, Footer } = Layout;
-
-const MenuItem = [
-	{ key: "/", label: <Link href="/">Trang chủ</Link> },
-	{
-		key: "/templates",
-		label: <Link href="/templates">Mẫu thiệp</Link>,
-	},
-	{
-		key: "/contact",
-		label: <Link href="/contact">Liên hệ</Link>,
-	},
-];
 export default function RootLayout({ children }) {
-	const pathname = usePathname();
-
 	return (
 		<html lang="vi">
 			<body>
-				<Provider store={store}>
-					<ConfigProvider theme={themeConfig}>
-						<Layout style={{ minHeight: "100vh" }}>
-							<Header
-								style={{
-									display: "flex",
-									alignItems: "center",
-									backgroundColor: "#fff",
-								}}
-							>
-								<div
-									style={{ color: "#fff", fontWeight: "bold", marginRight: 24 }}
-								>
-									<Image
-										width={170}
-										height={50}
-										src="/logo.svg"
-										alt="logo wedding invitation online"
-									></Image>
-								</div>
-								<Menu
-									style={{ flex: 1, backgroundColor: "#fff" }}
-									mode="horizontal"
-									selectedKeys={[pathname]}
-									items={MenuItem}
-								/>
-							</Header>
-
-							<Content className="wrapper-container">{children}</Content>
-
-							<Footer style={{ textAlign: "center" }}>
-								© {new Date().getFullYear()} Online Wedding Invitation
-							</Footer>
-						</Layout>
-					</ConfigProvider>
-				</Provider>
+				<Providers>
+					<Layout style={{ minHeight: "100vh" }}>
+						<AppHeader />
+						<AppContent>{children}</AppContent>
+						<AppFooter />
+					</Layout>
+				</Providers>
 			</body>
 		</html>
 	);
