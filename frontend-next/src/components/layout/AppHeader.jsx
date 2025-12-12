@@ -45,7 +45,10 @@ function AppHeader() {
 				}}
 			>
 				<div className="hidden sm:flex w-full desktop-header">
-					<div style={{ color: "#fff", fontWeight: "bold", marginRight: 24 }}>
+					<div
+						className="flex justify-center items-center"
+						style={{ color: "#fff", fontWeight: "bold", marginRight: 24 }}
+					>
 						<Image
 							width={170}
 							height={50}

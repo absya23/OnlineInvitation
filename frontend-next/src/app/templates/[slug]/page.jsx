@@ -2,15 +2,15 @@
 import React, { useEffect } from "react";
 import { useParams } from "next/navigation";
 import { Row, Col, Typography, Button, Spin, Alert } from "antd";
-import TemplatePreviewIframe from "../../../src/components/TemplatePreviewIframe";
 import { useDispatch, useSelector } from "react-redux";
-import axiosClient from "../../../src/lib/axios";
+import Link from "next/link";
+import TemplatePreviewIframe from "@/components/TemplatePreviewIframe";
 import {
+	fetchTemplateFailure,
 	fetchTemplateStart,
 	fetchTemplateSuccess,
-	fetchTemplateFailure,
-} from "../../../src/store/templatesSlice";
-import Link from "next/link";
+} from "@/store/templatesSlice";
+import axiosClient from "@/lib/axios";
 
 export default function TemplateDetail() {
 	const params = useParams();
